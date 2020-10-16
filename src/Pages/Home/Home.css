@@ -330,7 +330,7 @@
     display:block;
     position:absolute;
     border-radius:100%;
-    border:7px solid #1ebea5;
+    /*border:7px solid #1ebea5 transparent;*/
     box-sizing:border-box;
     transition: all .85s cubic-bezier(0.25, 1, 0.33, 1);
     box-shadow: 0 30px 85px rgba(0,0,0,0.14), 0 15px 35px rgba(0,0,0,0.14);
@@ -344,6 +344,7 @@
     animation: intro 1.6s;
     animation-fill-mode: forwards;
   }
+   /*
   .my-super-cool-btn .dot{
     width:8px;
     height:8px;
@@ -353,6 +354,8 @@
     position:absolute;
     transition: all .85s cubic-bezier(0.25, 1, 0.33, 1);
   }
+
+  */
   .my-super-cool-btn .dot:nth-child(1){
     top:50px;
     left:50px;

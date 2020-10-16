@@ -1,7 +1,7 @@
 /* header */
 
 .header-login-signup{
-	background-color:#1ebea5;
+	background-color:#4f95e6;
 	box-shadow:0 1px 1px #ccc;
 	padding: 20px 40px;
 	height: 80px;
@@ -25,7 +25,7 @@
 }
 
 .header-login-signup .header-limiter h1 span {
-	color: #e74c3c;
+	color: #1c5992;
 }
 
 /* The navigation links */
@@ -83,7 +83,7 @@
 
 .header-login-signup .header-limiter ul li:last-child a {
 	font-weight: bold;
-	background-color: #e74c3c;
+	background-color: #1c5992;
 	padding: 10px 15px;
 	border-radius: 3px;
 }

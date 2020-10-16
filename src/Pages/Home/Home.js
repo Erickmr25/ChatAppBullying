@@ -37,7 +37,7 @@ export default class HomePage extends Component{
 
             <div class="content-wrapper">
                 <div class="content">
-                    <h2 class="content-head is-center">Features of WebApp Application</h2>
+                    <h2 class="content-head is-center">La evolución de un acoso escolar</h2>
 
 
                     <div className="Appfeatures">
@@ -45,17 +45,19 @@ export default class HomePage extends Component{
 
                             <h3 class="content-subhead"> 
                                 <i class="fa fa-rocket"></i>
-                                Get Started Quickly
+                                Maltrato
                             </h3>
                             <p>
-                                Just register yourself with this app and start chating with your loved ones
+                                Suele comenzar casi siempre de manera repentina<br></br> 
+                                con un cambio brusco en la relacion entre <br></br>el niño acosador y
+                                el niño objetivo de acoso.
                             </p>
                         </div>
 
                         <div className="l-box pure-u-1 pure-u-md-1-2 pure-u-lg-1-4">
                             <h3 class="content-subhead"> 
                                 <i class="fa fa-sign-in"></i>
-                                Firebase Authentication
+                                Frecuencia
                             </h3>
                             <p>
                                 Firebase Authentication has been implemented in this app
@@ -65,7 +67,7 @@ export default class HomePage extends Component{
                         <div className="l-box pure-u-1 pure-u-md-1-2 pure-u-lg-1-4">
                             <h3 class="content-subhead"> 
                                 <i class="fa fa-sign-large"></i>
-                                Media
+                                Duración
                             </h3>
                             <p>
                                 You can share imagen with your friends for better experience
@@ -75,7 +77,7 @@ export default class HomePage extends Component{
                         <div className="l-box pure-u-1 pure-u-md-1-2 pure-u-lg-1-4">
                             <h3 class="content-subhead"> 
                                 <i class="fa fa-sign-large"></i>
-                                Updates
+                                Daños Permanentes
                             </h3>
                             <p>
                                 We will working with new features for this app for better experience in future
@@ -116,7 +118,8 @@ export default class HomePage extends Component{
 
                 </div>        
             </div>
-         </div> 
+         </div>          
         )
+    
     }
 }

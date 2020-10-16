@@ -4,25 +4,29 @@ import './Footer.css';
 class Footer extends React.Component{
     Copyright = () => {
         return (
-            <h2 variant="body2" color="text-Secondary" align="center">
+            <h5 variant="body2" color="text-Secondary" align="center">
             {'Copyright ©'}
+
+            {'  '}
 
             {'Erick Lopez'}
 
+            {'   '}
+
             {new Date().getFullYear()}
             
-            {'.'}
-        </h2>
+           {'.'}
+        </h5>
         )
     }
 
     render(){
         return(
-            <Footer>
+            <>
                 <div class="footer 1-box is-center">
                     {this.Copyright()}
                 </div>
-            </Footer>
+            </>    
         )
     }
 }
