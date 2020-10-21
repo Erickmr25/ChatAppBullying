@@ -21,7 +21,6 @@ export default class Login extends React.Component{
         super(props);
         this.state = {
             isLoading: true,
-            error: "",
             email: "",
             password: ""
         }
@@ -52,7 +51,6 @@ export default class Login extends React.Component{
 
     async handleSubmit(event) {
         event.preventDefault();
-        this.setState({error:""});
 
         await firebase.auth().signInWithEmailAndPassword(this.state.email, this.state.password)
         .then(async result => {
@@ -76,9 +74,7 @@ export default class Login extends React.Component{
             }
             this.props.history.push("/chat")
         }).catch(function(error) {
-            this.setState({
-                error: "Error al iniciar sesión, por favor intentelo de nuevo."
-            })  
+            document.getElementById('1').innerHTML="Email o Contraseña incorrecta, por favor intentelo de nuevo"
         })
     }
 
@@ -203,6 +199,9 @@ export default class Login extends React.Component{
                                     <Link to="/signup" variant="body2">
                                         Registrate
                                     </Link>
+                                </div>
+                                <div className="error">
+                                    <p id='1' style={{color:'red'}}></p>
                                 </div>
                         </form>
                     </div>

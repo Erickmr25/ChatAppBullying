@@ -3,6 +3,8 @@ import LoginString from '../Login/LoginStrings';
 import firebase from '../../Services/firebase';
 import '../../Pages/Chat/Chat.css';
 import ReactLoading from 'react-loading';
+import ChatBox from '../ChatBox/ChatBox';
+import WelcomeBoard from '../Welcome/Welcome';
 
 
 export default class Chat extends React.Component{
@@ -255,6 +257,16 @@ export default class Chat extends React.Component{
                             </div>
                         </div>
                         {this.state.displayedContacts}
+                    </div>
+                    <div className="viewBoard">
+                        { this.state.currentPeerUser ? (
+                            <ChatBox currentPeerUser = {this.state.currentPeerUser}
+                            showToast = {this.props.showToast}
+                            />):(<WelcomeBoard 
+                            currentUserName={this.currentUserName}
+                            currentUserPhoto={this.currentUserPhoto}
+                            />
+                        )}
                     </div>
                 </div>
             </div>
