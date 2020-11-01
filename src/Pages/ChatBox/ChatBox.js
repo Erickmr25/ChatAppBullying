@@ -4,7 +4,7 @@ import ReactLoading from 'react-loading';
 import 'react-toastify/dist/ReactToastify.css';
 import firebase from '../../Services/firebase';
 import images from '../../ProjectImages/ProjectImages';
-import moment from 'react-moment';
+import moment from 'moment';
 import '../../Pages/ChatBox/ChatBox.css';
 import LoginString from '../Login/LoginStrings';
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -47,7 +47,15 @@ export default class ChatBox extends React.Component {
     componentDidMount() {
         this.getListHistory()
     }
+    componentWillUnmount(){
+        if(this.removeListener) {
+            this.removeListener()
+        }
+    }
     getListHistory() {
+        if(this.removeListener) {
+            this.removeListener()
+        }
         this.listMessage.length = 0
         this.setState({isLoading: true})
         if(
@@ -78,7 +86,7 @@ export default class ChatBox extends React.Component {
         ) 
     }
     onSendMessage = (content, type) => {
-        let = notificationMessages = []
+        let notificationMessages = []
         if(content.trim() === '') {
             return
         }
@@ -154,7 +162,7 @@ export default class ChatBox extends React.Component {
                     </div>
                 </div>
                 <div className="viewListContentChat">
-                    {/* {} */}
+                    {this.renderListMessage()}
                     <div
                         style={{float: 'left', clear: 'both'}}
                         ref={el => {
@@ -173,7 +181,7 @@ export default class ChatBox extends React.Component {
                     />
                     <img
                         className="viewInputGallery"
-                        accept="iamges/*"
+                        accept="image/*"
                         type="file"
                         onChange={this.onChoosePhoto}
                     />
@@ -184,13 +192,13 @@ export default class ChatBox extends React.Component {
                         onChange={event => {
                             this.setState({inputValue: event.target.value})
                         }}
-                        onKeyPress = {this.onKeyPress}
+                        onKeyPress = {this.onKeyboardPress}
                     />
                     <img
                         className="icSend"
                         src={images.send}
                         alt="icon send"
-                        onClick={() => {this.onSendMessage(this.state.inputValue, 0)}}
+                        onClick={() => this.onSendMessage(this.state.inputValue, 0)}
                     />
                 </div>
                     {this.state.isLoading ? (
@@ -206,6 +214,137 @@ export default class ChatBox extends React.Component {
             </Card>
         )
     }
+    onChoosePhoto = event => {
+        if (event.target.files && event.target.files[0]){
+            this.setState({isLoading: true})
+            this.currentPhotoFile = event.target.files[0]
+            //check this file is an image?
+            const prefixFiletype = event.target.files[0].type.toString()
+            if(prefixFiletype.indexOf('image/') === 0) {
+                this.uploadPhoto()
+            } else {
+                this.setState({isLoading: false})
+                this.props.showToast(0, 'Este archivo no es una imagen')
+            }
+        } else {
+            this.setState({isLoading: false})
+        }
+    }
+    renderListMessage = () => {
+        if(this.listMessage.length > 0) {
+            let viewListMessage = []
+            this.listMessage.forEach((item, index) => {
+                if(item.idFrom === this.currentUserId) {
+                    if(item.type === 0) {
+                        viewListMessage.push(
+                            <div className="viewItemRight" key={item.timestamp}>
+                                <span className="textContentItem">{item.content}</span>
+                            </div>
+                        )
+                    }else if(item.type === 1) {
+                        viewListMessage.push(
+                            <div className="viewItemRight2" key={item.timestamp}>
+                                <img
+                                    className="imgItemRight"
+                                    src={item.content}
+                                    alt=""
+                                />
+                            </div>
+                        )
+                    }
+                }else {
+                    if(item.type === 0){
+                        viewListMessage.push(
+                            <div className="viewWrapItemLeft" key={item.timestamp}>
+                                <div className="viewWrapItemLeft3">
+                                    {this.isLastMessageLeft(index)? (
+                                        <img 
+                                            src={this.currentPeerUser.URL}
+                                            alt=""
+                                            className="perrAvatarLeft"
+                                        />
+                                    ): (
+                                        <div className="viewPaddingLeft" />
+                                    )}
+                                    <div className="viewItemLeft">
+                                        <span className="textContentItem">{item.content}</span>
+                                    </div>
+                                </div>
+                                {this.isLastMessageLeft(index) ? (
+                                    <span className="textTimeLeft">
+                                        <div className="time">
+                                            {moment(Number(item.timestamp)).format('ll')}
+                                        </div>
+                                    </span>
+                                ): null}
+                            </div>
+                        )
+                    }else if (item.type === 1) {
+                        viewListMessage.push(
+                            <div className="viewWrapItemLeft2" key={item.timestamp}>
+                                <div className="viewWrapItemLeft3">
+                                    {this.isLastMessageLeft(index) ? (
+                                        <img 
+                                            src={this.currentPeerUser.URL}
+                                            alt=""
+                                            className="perrAvatarLeft"
+                                        />
+                                    ): (
+                                        <div className="viewPaddingLeft" />
+                                    )}
+                                    <div className="viewItemLeft2">
+                                        <img 
+                                            src={item.content}
+                                            alt="content message"
+                                            className="imgItemLeft"
+                                        />
+                                    </div>
+                                </div>   
+                                {this.isLastMessageLeft(index) ? (
+                                    <span className="textTimeLeft">
+                                        <div className="time">
+                                            {moment(Number(item.timestamp)).format('ll')}
+                                        </div>
+                                    </span>
+                                ): null} 
+                            </div> 
+                        )           
+                    }else {
+                            viewListMessage.push(
+                                <div className="viewWrapItemLeft2" key={item.timestamp}>
+                                    <div className="viewWrapItemLeft3">
+                                        {this.isLastMessageLeft(index)? (
+                                            <img 
+                                                src={this.currentPeerUser.URL}
+                                                alt=""
+                                                className="perrAvatarLeft"
+                                            />
+                                        ): (
+                                            <div className="viewPaddingLeft" />
+                                        )}
+                                    </div>
+                                    {this.isLastMessageLeft(index) ? (
+                                    <span className="textTimeLeft">
+                                        <div className="time">
+                                            {moment(Number(item.timestamp)).format('ll')}
+                                        </div>
+                                    </span>
+                                ): null} 
+                                </div>
+                            )            
+                    }
+                }
+            })
+            return viewListMessage
+        }else {
+            return (
+                <div className="viewWrapSayHi">
+                    <span className="textSayHi">Dinos qué pasa</span>
+                    
+                </div>
+            )
+        }
+    }
     hashString = str => {
         let hash = 0
         for (let i = 0; i < str.length; i++) {
@@ -213,5 +352,27 @@ export default class ChatBox extends React.Component {
             hash = hash & hash //Convert to 32 bit integer
         }
         return hash
+    }
+    isLastMessageLeft(index) {
+        if (
+            (index + 1 < this.listMessage.length &&
+                this.listMessage[index + 1].idFrom === this.currentUserId) ||
+             index === this.listMessage.length -1
+        ) {
+            return true
+        } else {
+            return false
+        }
+    }
+    isLastMessageRight(index) {
+        if (
+            (index + 1 < this.listMessage.length &&
+                this.listMessage[index + 1].idFrom !== this.currentUserId) ||
+             index === this.listMessage.length -1
+        ) {
+            return true
+        } else {
+            return false
+        }
     }
 }
