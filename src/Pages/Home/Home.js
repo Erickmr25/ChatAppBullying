@@ -5,7 +5,9 @@ import '../../Pages/Home/Home.css';
 import images from '../../ProjectImages/ProjectImages';
 import { Link } from 'react-router-dom';
 
+
 export default class HomePage extends Component{
+
     render(){
         return(
          <div>
@@ -44,7 +46,6 @@ export default class HomePage extends Component{
                         <div className="contenthead">
 
                             <h3 class="content-subhead"> 
-                                <i class="fa fa-rocket"></i>
                                 Maltrato
                             </h3>
                             <p>
@@ -56,7 +57,6 @@ export default class HomePage extends Component{
 
                         <div className="l-box pure-u-1 pure-u-md-1-2 pure-u-lg-1-4">
                             <h3 class="content-subhead"> 
-                                <i class="fa fa-sign-in"></i>
                                 Frecuencia
                             </h3>
                             <p>
@@ -66,7 +66,6 @@ export default class HomePage extends Component{
 
                         <div className="l-box pure-u-1 pure-u-md-1-2 pure-u-lg-1-4">
                             <h3 class="content-subhead"> 
-                                <i class="fa fa-sign-large"></i>
                                 Duración
                             </h3>
                             <p>
@@ -76,7 +75,6 @@ export default class HomePage extends Component{
 
                         <div className="l-box pure-u-1 pure-u-md-1-2 pure-u-lg-1-4">
                             <h3 class="content-subhead"> 
-                                <i class="fa fa-sign-large"></i>
                                 Daños Permanentes
                             </h3>
                             <p>
@@ -118,7 +116,9 @@ export default class HomePage extends Component{
 
                 </div>        
             </div>
-         </div>          
+         </div> 
+         
+         
         )
     
     }

@@ -5,6 +5,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import firebase from '../../Services/firebase';
 import images from '../../ProjectImages/ProjectImages';
 import LoginString from '../Login/LoginStrings';
+import Chart from '../../Components/Chart';
 
 export default class Profile extends React.Component{
 
@@ -74,6 +75,9 @@ export default class Profile extends React.Component{
             this.updateUserInfo(false, null)
         }
     }
+    
+
+
     updateUserInfo = (isUpdatedPhotoURL, downloadURL) => {
         let newinfo
         if(isUpdatedPhotoURL) {
@@ -148,6 +152,12 @@ export default class Profile extends React.Component{
                     </button>
                     <button className="btnback" onClick={ () => {this.props.history.push('/chat')}}>
                         Regresar
+                    </button>
+                    <button className="btnback" onClick={ () => {this.props.history.push('/chart')}}>
+                        Estadisticas
+                    </button>
+                    <button className="btnback" onClick={ () => {this.props.history.push('/signup')}}>
+                        Crear Usuarios
                     </button>
                 </div>
                 {this.state.isLoading ? (

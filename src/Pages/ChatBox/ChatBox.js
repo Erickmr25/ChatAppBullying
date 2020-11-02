@@ -273,7 +273,7 @@ export default class ChatBox extends React.Component {
                                 {this.isLastMessageLeft(index) ? (
                                     <span className="textTimeLeft">
                                         <div className="time">
-                                            {moment(Number(item.timestamp)).format('ll')}
+                                            {moment(Number(item.timestamp)).format('LT')}
                                         </div>
                                     </span>
                                 ): null}
@@ -303,7 +303,7 @@ export default class ChatBox extends React.Component {
                                 {this.isLastMessageLeft(index) ? (
                                     <span className="textTimeLeft">
                                         <div className="time">
-                                            {moment(Number(item.timestamp)).format('ll')}
+                                            {moment(Number(item.timestamp)).format('LT')}
                                         </div>
                                     </span>
                                 ): null} 
@@ -326,7 +326,7 @@ export default class ChatBox extends React.Component {
                                     {this.isLastMessageLeft(index) ? (
                                     <span className="textTimeLeft">
                                         <div className="time">
-                                            {moment(Number(item.timestamp)).format('ll')}
+                                            {moment(Number(item.timestamp)).format('LT')}
                                         </div>
                                     </span>
                                 ): null} 

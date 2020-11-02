@@ -10,6 +10,7 @@ import Chat from './Pages/Chat/Chat';
 import Signup from './Pages/Signup/Signup';
 import Login from './Pages/Login/Login';
 import Profile from './Pages/Profile/Profile';
+import Chart from './Components/Chart';
 import { toast, ToastContainer } from 'react-toastify';
 
 class App extends Component{
@@ -58,6 +59,10 @@ class App extends Component{
           <Route 
             path = "/chat"
             render = { props => <Chat showToast={this.showToast} {...props} />} />
+
+          <Route 
+            path = "/chart"
+            render = { props => <Chart legendPosition="bottom" showToast={this.showToast} {...props} />} />
         </Switch>
       </Router>
     )
